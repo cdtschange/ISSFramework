@@ -6,4 +6,5 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
     #import "CorePlot-CocoaTouch.h"
+    #import "GlobalConfig.h"
 #endif
