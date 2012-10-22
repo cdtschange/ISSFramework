@@ -607,6 +607,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0246CD0416353C3B000272DF /* ChartView */ = {
+			isa = PBXGroup;
+			children = (
+				CE8B4A4F162FF96500CFD030 /* AnimationHelper.h */,
+				CE8B4A50162FF96500CFD030 /* AnimationHelper.m */,
+				CE8B4A51162FF96500CFD030 /* BarChartCPView.h */,
+				CE8B4A52162FF96500CFD030 /* BarChartCPView.m */,
+				CE8B4A53162FF96500CFD030 /* ChartCPBaseView.h */,
+				CE8B4A54162FF96500CFD030 /* ChartCPBaseView.m */,
+				CE8B4A59162FF96500CFD030 /* PieChartCPView.h */,
+				CE8B4A5A162FF96500CFD030 /* PieChartCPView.m */,
+				CE8B4A5B162FF96500CFD030 /* ScatterChartCPView.h */,
+				CE8B4A5C162FF96500CFD030 /* ScatterChartCPView.m */,
+				CE8B4A5F162FF96500CFD030 /* XYChartCPView.h */,
+				CE8B4A60162FF96500CFD030 /* XYChartCPView.m */,
+			);
+			name = ChartView;
+			sourceTree = "<group>";
+		};
+		0246CD0616353C8A000272DF /* ZoomBar */ = {
+			isa = PBXGroup;
+			children = (
+				CE8B4A61162FF96500CFD030 /* ZoomToolBar.h */,
+				CE8B4A62162FF96500CFD030 /* ZoomToolBar.m */,
+				CE8B4A63162FF96500CFD030 /* ZoomToolView.h */,
+				CE8B4A64162FF96500CFD030 /* ZoomToolView.m */,
+			);
+			name = ZoomBar;
+			sourceTree = "<group>";
+		};
+		0246CD0716353CBE000272DF /* TipAnnonation */ = {
+			isa = PBXGroup;
+			children = (
+				CE8B4A55162FF96500CFD030 /* CPTValueTipRectLayer.h */,
+				CE8B4A56162FF96500CFD030 /* CPTValueTipRectLayer.m */,
+			);
+			name = TipAnnonation;
+			sourceTree = "<group>";
+		};
 		CE5E7E8B1634DAC100E0E02E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,6 +798,8 @@
 		CE5E7F091634E90A00E0E02E /* OBShapedButton */ = {
 			isa = PBXGroup;
 			children = (
+				CE8B4A5D162FF96500CFD030 /* UIImage+ColorAtPixel.h */,
+				CE8B4A5E162FF96500CFD030 /* UIImage+ColorAtPixel.m */,
 				CE8B4A57162FF96500CFD030 /* OBShapedButton.h */,
 				CE8B4A58162FF96500CFD030 /* OBShapedButton.m */,
 			);
@@ -1062,27 +1103,10 @@
 		CE8B4A4D162FF94900CFD030 /* CorePlot */ = {
 			isa = PBXGroup;
 			children = (
+				0246CD0716353CBE000272DF /* TipAnnonation */,
+				0246CD0616353C8A000272DF /* ZoomBar */,
+				0246CD0416353C3B000272DF /* ChartView */,
 				CE8B4A7D162FF97400CFD030 /* CorePlotHeaders */,
-				CE8B4A4F162FF96500CFD030 /* AnimationHelper.h */,
-				CE8B4A50162FF96500CFD030 /* AnimationHelper.m */,
-				CE8B4A51162FF96500CFD030 /* BarChartCPView.h */,
-				CE8B4A52162FF96500CFD030 /* BarChartCPView.m */,
-				CE8B4A53162FF96500CFD030 /* ChartCPBaseView.h */,
-				CE8B4A54162FF96500CFD030 /* ChartCPBaseView.m */,
-				CE8B4A55162FF96500CFD030 /* CPTValueTipRectLayer.h */,
-				CE8B4A56162FF96500CFD030 /* CPTValueTipRectLayer.m */,
-				CE8B4A59162FF96500CFD030 /* PieChartCPView.h */,
-				CE8B4A5A162FF96500CFD030 /* PieChartCPView.m */,
-				CE8B4A5B162FF96500CFD030 /* ScatterChartCPView.h */,
-				CE8B4A5C162FF96500CFD030 /* ScatterChartCPView.m */,
-				CE8B4A5D162FF96500CFD030 /* UIImage+ColorAtPixel.h */,
-				CE8B4A5E162FF96500CFD030 /* UIImage+ColorAtPixel.m */,
-				CE8B4A5F162FF96500CFD030 /* XYChartCPView.h */,
-				CE8B4A60162FF96500CFD030 /* XYChartCPView.m */,
-				CE8B4A61162FF96500CFD030 /* ZoomToolBar.h */,
-				CE8B4A62162FF96500CFD030 /* ZoomToolBar.m */,
-				CE8B4A63162FF96500CFD030 /* ZoomToolView.h */,
-				CE8B4A64162FF96500CFD030 /* ZoomToolView.m */,
 				CE8B4A65162FF96500CFD030 /* libCorePlot_CocoaTouch.a */,
 			);
 			name = CorePlot;
