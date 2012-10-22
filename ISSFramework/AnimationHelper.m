@@ -32,6 +32,8 @@
         self.timeIntervalScale=0.01;
         self.timeForMoveFrame=0.4;
         self.dataStep=0.1;
+        
+        
     }
     return self;
 }
