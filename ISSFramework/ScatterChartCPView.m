@@ -9,7 +9,6 @@
 #import "ScatterChartCPView.h"
 
 @interface ScatterChartCPView ()
-
 @end
 
 @implementation ScatterChartCPView
@@ -44,6 +43,7 @@
 -(void)initPlots {
     [super initPlot];
     
+    // create scatter plot
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) self.hostView.hostedGraph.defaultPlotSpace;
     NSArray *allKeys=[self.plotSource allKeys];
     
@@ -163,6 +163,8 @@
     if (!self.tipShow) {
         return;
     }
+    
+    // create content layer
     CGRect frame=self.getValueTipRectBlock(plot,index,price);
     UIColor *focusColor = [UIColor colorWithCGColor:[self getPlotColor:index].cgColor];
     const CGFloat* colors = CGColorGetComponents(focusColor.CGColor);
@@ -170,6 +172,7 @@
     valueLayer.borderColor = [UIColor colorWithRed:colors[0]*0.75 green:colors[1]*0.75 blue:colors[2]*0.75 alpha:1.0];
     valueLayer.drawerDelegate = self;
 
+    // add annotation
     [self displayValueTipControl:plot subLayer:valueLayer anchorX:x anchorY:y];
 }
 
@@ -180,6 +183,5 @@
         [self.drawValueTipChartDelegate drawValueTipRect:self layer:layer context:context drawRect:rect plot:self.selectPlot index:self.selectIndex price:self.selectPrice];
     }
 }
-
 
 @end

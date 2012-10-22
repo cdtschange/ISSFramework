@@ -11,8 +11,8 @@
 
 @interface ChartCPBaseView ()
 {
-    UITapGestureRecognizer *tapGestureListener;
-    CGRect originFrame;
+    UITapGestureRecognizer *tapGestureListener; // 单击事件
+    CGRect originFrame; // 初始区域
 }
 @end
 
@@ -36,11 +36,10 @@
 
 -(id)init{
     if (self = [super init]) {
-        
+        // 默认属性值
         defaultColorArray = [NSArray arrayWithObjects:[CPTColor colorWithComponentRed:77/255.0 green:94/255.0 blue:185/255.0 alpha:1],[CPTColor colorWithComponentRed:58/255.0 green:181/255.0 blue:0/255.0 alpha:1],[CPTColor colorWithComponentRed:220/255.0 green:0/255.0 blue:0/255.0 alpha:1],[CPTColor colorWithComponentRed:254/255.0 green:207/255.0 blue:0/255.0 alpha:1], nil ];
         animationHelper = [[AnimationHelper alloc] init];
         theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
-        //        theme = [CPTTheme themeNamed:@"white"];
         self.borderWidth=2;
         self.focusBorderColor=[UIColor blueColor];
         self.tipArrowLength=30;
@@ -50,10 +49,10 @@
         self.selectIndex=-1;
         self.tipShow=YES;
         
-        maskView=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
-        
-        maskView.backgroundColor=[UIColor blackColor];
-        maskView.alpha=0.5;
+        // 放大后背景遮罩
+        maskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1024, 768)];
+        maskView.backgroundColor = [UIColor blackColor];
+        maskView.alpha = 0.5;
         
         // information button
         btnInfo = [UIButton buttonWithType:UIButtonTypeInfoLight];
@@ -75,13 +74,13 @@
         groundView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         [self addSubview:groundView];
         
+        // 放大后关闭按钮
         btnClose = [UIButton buttonWithType:UIButtonTypeCustom];
         btnClose.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"close.png"]];
         btnClose.frame=CGRectMake(10, 10, 22, 22);
         [btnClose addTarget:self action:@selector(touchCloseButtonEvent:) forControlEvents:UIControlEventTouchUpInside];
         btnClose.hidden=YES;
         [self addSubview:btnClose];
-        
         
         // tap listener
         tapGestureListener = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapListener:)];
@@ -140,7 +139,7 @@
     //	self.layer.masksToBounds = YES;
 	[self addSubview:self.hostView];
     
-    
+    // 长按事件
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressEventListener:)];
     [self.hostView addGestureRecognizer:longPress];
 }
@@ -153,10 +152,8 @@
 	graph.paddingLeft   = graphPaddingLeft;
 	graph.paddingTop    = graphPaddingTop;
 	graph.paddingRight  = graphPaddingRight;
-    //    [graph applyTheme:theme];
-    UIImage *image = [UIImage imageNamed:@"view_chart.png"];
-    graph.fill = [CPTFill fillWithImage:[CPTImage imageWithCGImage:image.CGImage]];
-    
+    [graph applyTheme:theme];
+
 	CPTMutableTextStyle *titleStyle = [CPTMutableTextStyle textStyle];
 	titleStyle.color = [CPTColor whiteColor];
 	titleStyle.fontName = @"Helvetica-Bold";
@@ -170,6 +167,7 @@
 	frameStyle.lineColor = [CPTColor colorWithComponentRed:255 green:255 blue:255 alpha:0.3];
     graph.plotAreaFrame.borderLineStyle=frameStyle;
 }
+
 - (void)initPlot{
     NSArray *allKeys=[self.plotSource allKeys];
     if (!self.plotArray) {
@@ -178,6 +176,7 @@
         [self.plotArray removeAllObjects];
     }
 }
+
 -(void)initAxes{
     
 }
@@ -185,6 +184,7 @@
 -(CPTColor *)getPlotColor:(CPTPlot *)plot index:(NSInteger)index{
     return [self.defaultColorArray objectAtIndex:index%self.defaultColorArray.count];
 }
+
 -(CPTColor *)getPlotColor:(NSInteger)index{
     return [self.defaultColorArray objectAtIndex:index%self.defaultColorArray.count];
 }
@@ -280,14 +280,7 @@
         self.btnInfo.hidden=YES;
         self.layer.borderColor=[UIColor clearColor].CGColor;
         [self addGestureRecognizer:tapGestureListener];
-    }
-    
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
+    }    
 }
 
 - (void)moveToFrame:(CGRect)frame animation:(BOOL)animation complete:(void (^)(BOOL finished))completion
@@ -305,8 +298,6 @@
         self.frame = frame;
     }
 }
-
-
 
 #pragma mark - Animation
 -(void)setNewPlotSource:(NSMutableDictionary *)source withAnimation:(BOOL)animation{
@@ -435,6 +426,7 @@
     
     return NO;
 }
+
 - (void)tapListener:(UITapGestureRecognizer*)sender
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(on_tap:sender:)]) {
@@ -446,7 +438,6 @@
         
         self.isSelected = YES;
     }
-    
 }
 
 - (void)touchInfoButtonEvent:(id)sender
@@ -474,12 +465,9 @@
                 groundView.center = CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame));
             } completion:^(BOOL finished) {
                 btnClose.hidden=NO;
-                [self bringSubviewToFront:btnClose];
-                
+                [self bringSubviewToFront:btnClose]; 
             }];
-            
         }];
-        
     }
 }
 
@@ -502,7 +490,6 @@
             self.layer.borderColor=focusBorderColor.CGColor;
         }];
     }];
-    
 }
 
 

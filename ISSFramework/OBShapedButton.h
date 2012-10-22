@@ -51,7 +51,7 @@
 // So we will do the same and treat pixels with alpha < 0.1 as transparent.
 #define kAlphaVisibleThreshold (0.1f)
 
-//透明区域不响应事件的按钮
+
 @interface OBShapedButton : UIButton {
     // Our class interface is empty. OBShapedButton only overwrites one method of UIView.
     // It has no attributes of its own.

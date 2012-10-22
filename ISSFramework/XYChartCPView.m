@@ -9,7 +9,7 @@
 #import "XYChartCPView.h"
 
 @interface XYChartCPView (){
-    double doubleXRangOffset;
+    double doubleXRangOffset; // x方向可视区域最大值与全局最大值差值
 }
 
 @end
@@ -30,6 +30,7 @@
 
 -(id)init{
     if (self = [super init]) {
+        // 默认属性值
         self.graphPaddingLeft=50;
         self.graphPaddingBottom=50;
         self.graphPaddingRight=20;
@@ -60,6 +61,7 @@
 -(void)initHostView{
     [super initHostView];
     
+    // 双击事件监控
     UITapGestureRecognizer *tapListener = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapListener:)];
     tapListener.numberOfTapsRequired = 2;
     tapListener.numberOfTouchesRequired = 1;
@@ -73,6 +75,7 @@
 
 -(void)setPlotSpace
 {
+    // 可视区域内X轴Y轴最大值设定
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) self.hostView.hostedGraph.defaultPlotSpace;
     plotSpace.allowsUserInteraction=YES;
     plotSpace.delegate=self;
@@ -188,6 +191,7 @@
         return;
     }
     
+    // 隐藏提示信息
     [self dismissValueTipControl];
     
     // 相对于柱状视图区域位置
@@ -199,6 +203,7 @@
 		interactionPoint.y = self.hostView.frame.size.height - interactionPoint.y;
 	}
     
+    // 转换视图区域内点击点为坐标轴内点
 	CGPoint pointInPlotArea = [self.hostView.hostedGraph convertPoint:interactionPoint
                                                               toLayer:self.hostView.hostedGraph.plotAreaFrame.plotArea];
     if (CGRectContainsPoint(self.hostView.hostedGraph.plotAreaFrame.plotArea.frame, pointInPlotArea)) {
@@ -209,23 +214,18 @@
         
         CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) self.hostView.hostedGraph.defaultPlotSpace;
         if (plotSpace.xRange.lengthDouble+doubleXRangOffset < plotSpace.globalXRange.lengthDouble) {
-            
+            // 双击返回到初始状态
             [data setValue:[NSNumber numberWithDouble:(plotSpace.xRange.lengthDouble+doubleXRangOffset/doubleClickScaleDefaultValue)/plotSpace.globalXRange.lengthDouble]
                     forKey:@"scaleValue"];
         }
         else {
+            // 双击放大
             [data setValue:[NSNumber numberWithDouble:doubleClickScaleDefaultValue] forKey:@"scaleValue"];
         }
         
+        // 动画显示放大状态
         [self.animationHelper commitAnimation:AnimationScale data:data];
     }
-}
-
-- (double)currentScaleVaue
-{
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) self.hostView.hostedGraph.defaultPlotSpace;
-    
-    return plotSpace.xRange.lengthDouble;
 }
 
 @end

@@ -19,7 +19,6 @@
 {
     BOOL result = [super pointingDeviceDownEvent:event atPoint:interactionPoint];
     if (result) {
-//        NSLog(@"yes");
     }
     else {
         if (!parentView.tipShow) {
@@ -27,7 +26,6 @@
         }
         
         [parentView dismissValueTipControl];
-//        NSLog(@"NO");
     }
     return result;
 }
@@ -65,6 +63,7 @@
 -(void)initPlot {
     [super initPlot];
 	CPTGraph *graph = self.hostView.hostedGraph;
+    
 	// 2 - Create chart
     pieChart = [[CPTPieChartEx alloc] init];
     ((CPTPieChartEx*)pieChart).parentView = self;
@@ -76,13 +75,14 @@
 	pieChart.labelOffset = -pieChart.pieRadius*2/3;
 	pieChart.sliceDirection = CPTPieDirectionClockwise;
     pieChart.centerAnchor = CGPointMake(0.1, 0.5);
+    
     // 3 - Create gradient
 	CPTGradient *overlayGradient = [[CPTGradient alloc] init];
 	overlayGradient.gradientType = CPTGradientTypeRadial;
 	overlayGradient = [overlayGradient addColorStop:[[CPTColor whiteColor] colorWithAlphaComponent:0.0] atPosition:0.9];
 	overlayGradient = [overlayGradient addColorStop:[[CPTColor whiteColor] colorWithAlphaComponent:0.2] atPosition:1.0];
-//	overlayGradient = [overlayGradient addColorStop:[[CPTColor whiteColor] colorWithAlphaComponent:0.2] atPosition:1.0];
 	pieChart.overlayFill = [CPTFill fillWithGradient:overlayGradient];
+    
 	// 4 - Add chart to graph
 	[graph addPlot:pieChart];
     [self.plotArray addObject:pieChart];
@@ -164,6 +164,7 @@
         return;
     }
     
+    // create content layer
     CGRect frame = self.getValueTipRectBlock(plot,index,price);
     UIColor *focusColor = [UIColor colorWithCGColor:[self getPlotColor:index].cgColor];
     const CGFloat* colors = CGColorGetComponents(focusColor.CGColor);
@@ -199,6 +200,7 @@
         return;
     }
     
+    // save context
     CGContextSaveGState(context);
     CGContextAddPath(context, path);
     CGContextClip(context);
@@ -240,6 +242,5 @@
         [self.drawValueTipChartDelegate drawValueTipRect:self layer:layer context:context drawRect:rect plot:self.selectPlot index:self.selectIndex price:self.selectPrice];
     }
 }
-
 
 @end

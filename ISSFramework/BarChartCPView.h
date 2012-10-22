@@ -12,13 +12,8 @@
 
 @interface BarChartCPView : XYChartCPView<CPTBarPlotDataSource, CPTBarPlotDelegate>
 
-@property (assign, nonatomic) double barWidth;
-@property (assign, nonatomic) double barInitX;
-
-@property (assign, nonatomic) BOOL colorfulBar;
-
-
--(void)barPlot:(CPTBarPlot *)plot barWasSelectedAtRecordIndex:(NSUInteger)index;
-
+@property (assign, nonatomic) double barWidth; // 柱状体宽度
+@property (assign, nonatomic) double barInitX; // 柱状体间隔
+@property (assign, nonatomic) BOOL colorfulBar; // 是否颜色填充
 
 @end

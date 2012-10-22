@@ -39,7 +39,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
 - (void)initChart{
     [self initHostView];
     [self initGraph];
@@ -94,32 +93,6 @@
 
 #pragma mark - Animation Delegate + Run Loop Timer
 
-- (void)updateTimerFired:(NSTimer *)timer;
-{
-////    CALayer *parentLayer = [self layer];
-//    NSArray *pieLayers = self.plotArray;
-//    
-//    [pieLayers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        
-//        NSNumber *presentationLayerStartAngle = [[obj presentationLayer] valueForKey:@"startAngle"];
-//        CGFloat interpolatedStartAngle = [presentationLayerStartAngle doubleValue];
-//        
-//        NSNumber *presentationLayerEndAngle = [[obj presentationLayer] valueForKey:@"endAngle"];
-//        CGFloat interpolatedEndAngle = [presentationLayerEndAngle doubleValue];
-//        
-////        CGPathRef path = CGPathCreateArc(_pieCenter, _pieRadius, interpolatedStartAngle, interpolatedEndAngle);
-////        [obj setPath:path];
-////        CFRelease(path);
-////        
-////        {
-////            CALayer *labelLayer = [[obj sublayers] objectAtIndex:0];
-////            CGFloat interpolatedMidAngle = (interpolatedEndAngle + interpolatedStartAngle) / 2;
-////            [CATransaction setDisableActions:YES];
-////            [labelLayer setPosition:CGPointMake(_pieCenter.x + (_labelRadius * cos(interpolatedMidAngle)), _pieCenter.y + (_labelRadius * sin(interpolatedMidAngle)))];
-////            [CATransaction setDisableActions:NO];
-////        }
-//    }];
-}
 static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAngle, CGFloat endAngle)
 {
     CGMutablePathRef path = CGPathCreateMutable();
@@ -171,6 +144,7 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
    }
     return [NSDecimalNumber numberWithUnsignedInteger:index];
 }
+
 -(CPTFill *)barFillForBarPlot:(CPTBarPlot *)barPlot recordIndex:(NSUInteger)index{
     if (!colorfulBar) {
         return nil;
@@ -195,13 +169,13 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
     }
     return [self.defaultColorArray objectAtIndex:index%self.defaultColorArray.count];
 }
+
 -(CPTColor *)getPlotColor:(NSInteger)index{
     if (!colorfulBar) {
         return [super getPlotColor:0];
     }
     return [super getPlotColor:index];
 }
-
 
 #pragma mark - CPTBarPlotDelegate methods
 -(void)barPlot:(CPTBarPlot *)plot barWasSelectedAtRecordIndex:(NSUInteger)index
@@ -210,6 +184,7 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
 		return;
 	}
 
+    // 3 - select index and value
 	NSDictionary *item=[self.plotSource objectForKey:plot.identifier];
     NSNumber *price =[((NSArray *)[item objectForKey:@"value"]) objectAtIndex:index];
     
@@ -217,10 +192,12 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
     self.selectPlot=plot;
     self.selectIndex=index;
     
+    // 4 - not need show
     if (!self.tipShow) {
         return;
     }
     
+    // 5 - create content layer
     CGRect frame=self.getValueTipRectBlock(plot,index,price);
     UIColor *focusColor = [UIColor colorWithCGColor:[self getPlotColor:index].cgColor];
     const CGFloat* colors = CGColorGetComponents(focusColor.CGColor);
@@ -236,15 +213,14 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
             break;
         }
     }
+    
 	// 7 - Get the anchor point for annotation
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace*)self.hostView.hostedGraph.defaultPlotSpace;
 	CGFloat x = index + barInitX + (plotIndex * barWidth);
 	NSNumber *anchorX = [NSNumber numberWithFloat:x];
 	CGFloat y = [price floatValue];
-    NSLog(@"%f",plotSpace.globalXRange.lengthDouble/plotSpace.xRange.lengthDouble);
 	NSNumber *anchorY = [NSNumber numberWithFloat:y];
-    NSLog(@"%f",y);
-	// 8 - Add the annotation
+    
+    // 8 - Add the annotation
     [self displayValueTipControl:plot subLayer:valueLayer anchorX:anchorX anchorY:anchorY];
 }
 
@@ -286,9 +262,7 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
     double length=rect.size.height+rect.size.width;
     CGPoint lt = CGPointMake(rect.origin.x-delta/2, rect.origin.y+delta/2); // 左上
     CGPoint rt = CGPointMake(lt.x+length+2*delta/2, lt.y); // 右上
-//    CGPoint lb = CGPointMake(lt.x, lt.y-delta); // 左下
-//    CGPoint rb = CGPointMake(rt.x, lb.y); // 右下
-    
+
     // 沿着上边从左到右移动，再从上到下
     CGFloat dx = 0;
     CGPoint linePoints[2];

@@ -11,7 +11,7 @@
 
 @interface AnimationHelper()
 {
-    NSTimer *timer;
+    NSTimer *timer; // 定时器
 }
 
 @end
@@ -26,14 +26,13 @@
 
 -(id)init{
     if (self=[super init]) {
+        // 默认属性值
         self.dataIncreasedScale=1;
         self.dataIncreasedUpdateData=1;
         self.timeIntervalUpdateData=0.01;
         self.timeIntervalScale=0.01;
         self.timeForMoveFrame=0.4;
         self.dataStep=0.1;
-        
-        
     }
     return self;
 }
@@ -41,6 +40,7 @@
 -(void)commitAnimation:(AnimationType)type data:(NSDictionary *)data
 {
     switch (type) {
+        // 更新数据
         case AnimationUpdateData:
             self.dataIncreasedUpdateData=dataStep;
             timer = [NSTimer timerWithTimeInterval:self.timeIntervalUpdateData
@@ -50,6 +50,7 @@
                                             repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
             break;
+        // 缩放
         case AnimationScale:
             self.dataIncreasedScale=1;
             timer = [NSTimer timerWithTimeInterval:self.timeIntervalScale
@@ -59,6 +60,7 @@
                                             repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
             break;
+        // 更改区域
         case AnimationMoveFrame:
             [self doAnimationMoveFrame:data];
             break;
@@ -67,8 +69,10 @@
     }
     
 }
+
 -(void)stopAnimation
 {
+    // 停止定时器
     if (timer) {
         [timer invalidate];
         timer = nil;
@@ -76,7 +80,6 @@
         self.dataIncreasedUpdateData=1;
     }
 }
-
 
 -(BOOL)isAnimation
 {
@@ -90,6 +93,7 @@
 -(void)doAnimationUpdateData:(NSTimer *)theTimer{
     NSDictionary *data=theTimer.userInfo;
     if (data) {
+        // 重新加载数据
         NSArray *plotArray=[data objectForKey:@"plotArray"];
         for (CPTPlot *plot in plotArray) {
             self.dataIncreasedUpdateData += self.dataStep;
@@ -97,19 +101,6 @@
                 [timer invalidate];
                 self.dataIncreasedUpdateData = 1.0;
             }
-//            [CATransaction begin];
-//            [CATransaction setAnimationDuration:0.5];
-//
-//            CABasicAnimation *arcAnimation = [CABasicAnimation animationWithKeyPath:@"SmoothAnimation"];
-////            NSNumber *currentAngle = oldNumber;
-//            
-//            [arcAnimation setFromValue:@0];
-//            [arcAnimation setToValue:@1];
-////            [arcAnimation setDelegate:delegate];
-//            [arcAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-//            [plot addAnimation:arcAnimation forKey:@"SmoothAnimation"];
-//            [plot setValue:@1 forKey:@"SmoothAnimation"];
-//            [CATransaction commit];
             
             [plot reloadData];
         }
@@ -144,7 +135,6 @@
                 tempValue=dataIncreasedScale/(dataIncreasedScale+step);
             }
             self.dataIncreasedScale -= step;
-            
         }
         
         for ( CPTPlotSpace *space in hostView.hostedGraph.allPlotSpaces ) {

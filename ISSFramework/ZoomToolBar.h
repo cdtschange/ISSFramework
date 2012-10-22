@@ -10,9 +10,9 @@
 
 @interface ZoomToolBar : UIView
 
-@property (assign, nonatomic) CGFloat scaleX;
-@property (assign, nonatomic) CGFloat scaleY;
-@property (assign, nonatomic) CGPoint touchPoint;
-@property (assign, nonatomic) UIView *hostView;
+@property (assign, nonatomic) CGFloat scaleX; // 放大镜X轴放大倍数
+@property (assign, nonatomic) CGFloat scaleY; // 放大镜Y轴放大倍数
+@property (assign, nonatomic) CGPoint touchPoint; // 放大中心点
+@property (assign, nonatomic) UIView *hostView; // 放大视图
 
 @end

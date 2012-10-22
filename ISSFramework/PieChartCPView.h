@@ -10,8 +10,8 @@
 
 @interface PieChartCPView : ChartCPBaseView<CPTPieChartDataSource,CPTPieChartDelegate>
 
-@property (nonatomic, readonly, strong) CPTPieChart *pieChart;
-@property (nonatomic, readonly, strong) CPTLegend *legend;
-@property (nonatomic, readwrite, strong) NSArray *legendTextArray;
+@property (nonatomic, readonly, strong) CPTPieChart *pieChart; // 饼图
+@property (nonatomic, readonly, strong) CPTLegend *legend; // 图例
+@property (nonatomic, readwrite, strong) NSArray *legendTextArray; // 饼图文字
 
 @end

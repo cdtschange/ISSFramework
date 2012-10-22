@@ -18,12 +18,12 @@ typedef enum{
 
 @interface ZoomToolView : UIView
 
-@property (strong, nonatomic) ZoomToolBar *zoomBar;
-@property (strong, nonatomic) UIView *tipView;
-@property (assign, nonatomic) CGPoint touchPoint;
-@property (readonly, nonatomic) UITipViewMaskMode tipMaskMode;
+@property (strong, nonatomic) ZoomToolBar *zoomBar; // 放大镜
+@property (strong, nonatomic) UIView *tipView; // 指示信息框
+@property (assign, nonatomic) CGPoint touchPoint; // 放大中心点
+@property (readonly, nonatomic) UITipViewMaskMode tipMaskMode; // 提示信息所处位置
 
-@property (strong, nonatomic) UIColor *tipBorderColor;
-@property (assign, nonatomic) CGFloat tipBorderWidth;
-@property (assign, nonatomic) CGFloat tipCornerRadius;
+@property (strong, nonatomic) UIColor *tipBorderColor; // 提示信息框边框颜色
+@property (assign, nonatomic) CGFloat tipBorderWidth; // 提示信息框边框宽度
+@property (assign, nonatomic) CGFloat tipCornerRadius; // 提示信息框边框曲率
 @end
