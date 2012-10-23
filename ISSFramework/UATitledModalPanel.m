@@ -91,7 +91,7 @@
 }
 
 - (void)showAnimationFinished {
-//	UADebugLog(@"Fading in content for modalPanel: %@", self);
+	UADebugLog(@"Fading in content for modalPanel: %@", self);
 	[UIView animateWithDuration:0.2
 						  delay:0.0
 						options:UIViewAnimationCurveEaseIn
