@@ -11,6 +11,14 @@
 #import "CPTValueTipRectLayer.h"
 #import "ZoomToolView.h"
 
+//add by wj
+enum SourceType
+{
+    BARCHART = 1000,
+    SCATTERCHART,
+    PIECHART
+};
+
 /**
  提示框大小
  */
