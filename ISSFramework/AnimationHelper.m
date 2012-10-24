@@ -39,7 +39,6 @@
 
 -(void)commitAnimation:(AnimationType)type data:(NSDictionary *)data
 {
-    NSLog(@"test");
     switch (type) {
         // 更新数据
         case AnimationUpdateData:
