@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0246CD11163540BC000272DF /* CorePlot-ISS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0246CD10163540BC000272DF /* CorePlot-ISS.h */; };
+		021A579E16368F7E005714E7 /* BarColorChartCPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 021A579A16368F7E005714E7 /* BarColorChartCPView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		021A579F16368F7E005714E7 /* BarColorChartCPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 021A579B16368F7E005714E7 /* BarColorChartCPView.m */; };
+		021A57A016368F7E005714E7 /* BarAndScatterCPView.h in Headers */ = {isa = PBXBuildFile; fileRef = 021A579C16368F7E005714E7 /* BarAndScatterCPView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		021A57A116368F7E005714E7 /* BarAndScatterCPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 021A579D16368F7E005714E7 /* BarAndScatterCPView.m */; };
+		0246CD11163540BC000272DF /* CorePlot-ISS.h in Headers */ = {isa = PBXBuildFile; fileRef = 0246CD10163540BC000272DF /* CorePlot-ISS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE5E7E951634E3CD00E0E02E /* GANTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = CE5E7E941634E3CD00E0E02E /* GANTracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE5E7E9F1634E3E600E0E02E /* TimeScroller.h in Headers */ = {isa = PBXBuildFile; fileRef = CE5E7E971634E3E600E0E02E /* TimeScroller.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE5E7EA01634E3E600E0E02E /* TimeScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5E7E981634E3E600E0E02E /* TimeScroller.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -293,6 +297,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		021A579A16368F7E005714E7 /* BarColorChartCPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarColorChartCPView.h; sourceTree = "<group>"; };
+		021A579B16368F7E005714E7 /* BarColorChartCPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarColorChartCPView.m; sourceTree = "<group>"; };
+		021A579C16368F7E005714E7 /* BarAndScatterCPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarAndScatterCPView.h; sourceTree = "<group>"; };
+		021A579D16368F7E005714E7 /* BarAndScatterCPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarAndScatterCPView.m; sourceTree = "<group>"; };
 		0246CD10163540BC000272DF /* CorePlot-ISS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-ISS.h"; sourceTree = "<group>"; };
 		CE5E7E941634E3CD00E0E02E /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
 		CE5E7E971634E3E600E0E02E /* TimeScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeScroller.h; sourceTree = "<group>"; };
@@ -612,6 +620,10 @@
 		0246CD0416353C3B000272DF /* ChartView */ = {
 			isa = PBXGroup;
 			children = (
+				021A579A16368F7E005714E7 /* BarColorChartCPView.h */,
+				021A579B16368F7E005714E7 /* BarColorChartCPView.m */,
+				021A579C16368F7E005714E7 /* BarAndScatterCPView.h */,
+				021A579D16368F7E005714E7 /* BarAndScatterCPView.m */,
 				CE8B4A4F162FF96500CFD030 /* AnimationHelper.h */,
 				CE8B4A50162FF96500CFD030 /* AnimationHelper.m */,
 				CE8B4A51162FF96500CFD030 /* BarChartCPView.h */,
@@ -1473,6 +1485,8 @@
 				CE5E7FF01635198400E0E02E /* FPTouchView.h in Headers */,
 				CE5E800716351C3000E0E02E /* UIDeviceHelper.h in Headers */,
 				0246CD11163540BC000272DF /* CorePlot-ISS.h in Headers */,
+				021A579E16368F7E005714E7 /* BarColorChartCPView.h in Headers */,
+				021A57A016368F7E005714E7 /* BarAndScatterCPView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1672,6 +1686,8 @@
 				CE5E7FEF1635198400E0E02E /* FPPopoverView.m in Sources */,
 				CE5E7FF11635198400E0E02E /* FPTouchView.m in Sources */,
 				CE5E800816351C3000E0E02E /* UIDeviceHelper.m in Sources */,
+				021A579F16368F7E005714E7 /* BarColorChartCPView.m in Sources */,
+				021A57A116368F7E005714E7 /* BarAndScatterCPView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1760,7 +1776,6 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -1789,7 +1804,6 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;

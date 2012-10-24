@@ -74,7 +74,7 @@
 	pieChart.startAngle = M_PI_4;
 	pieChart.labelOffset = -pieChart.pieRadius*2/3;
 	pieChart.sliceDirection = CPTPieDirectionClockwise;
-    pieChart.centerAnchor = CGPointMake(0.1, 0.5);
+    pieChart.centerAnchor = CGPointMake(0.5, 0.5);
     
     // 3 - Create gradient
 	CPTGradient *overlayGradient = [[CPTGradient alloc] init];

@@ -82,14 +82,17 @@
     plotSpace.xScaleType = CPTScaleTypeLinear;
     plotSpace.yScaleType = CPTScaleTypeLinear;
     
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(self.xAxisMin) length:CPTDecimalFromFloat(self.xRangValue)];
-	plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(self.yAxisMin) length:CPTDecimalFromFloat(self.yAxisMax)];
+    if (self.xRangValue <= self.xAxisMin) {
+        plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(self.xAxisMin) length:CPTDecimalFromFloat(self.xAxisMax)];
+    }else{
+        plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(self.xAxisMin) length:CPTDecimalFromFloat(self.xRangValue)];
+    }
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(self.yAxisMin) length:CPTDecimalFromFloat(self.yAxisMax)];
     plotSpace.globalXRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(self.xAxisMin) length:CPTDecimalFromFloat(self.xAxisMax)];
     plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(self.yAxisMin) length:CPTDecimalFromFloat(self.yAxisMax)];
     
     doubleXRangOffset = plotSpace.globalXRange.lengthDouble - plotSpace.xRange.lengthDouble;
 }
-
 
 -(void)initPlot{
     [super initPlot];
@@ -147,11 +150,10 @@
 	axisSet.xAxis.axisLabels = newAxisLabels;
 }
 
--(void)setPlotSource:(NSMutableDictionary *)plotSource{
+-(void)setPlotSource:(NSMutableDictionary *)plotSource
+{
     [super setPlotSource:plotSource];
-    
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *) self.hostView.hostedGraph.defaultPlotSpace;
-    [plotSpace scaleBy:plotSpace.xRange.lengthDouble/plotSpace.globalXRange.lengthDouble aboutPoint:CGPointMake(0, 0)];
+    [self setPlotSpace];
 }
 
 #pragma mark - CPTPlotSpaceDelegate methods

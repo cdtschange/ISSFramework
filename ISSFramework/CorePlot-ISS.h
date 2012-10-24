@@ -13,6 +13,7 @@
 #import "BarChartCPView.h"
 #import "PieChartCPView.h"
 #import "ScatterChartCPView.h"
-
+#import "BarColorChartCPView.h"
+#import "BarAndScatterCPView.h"
 
 #endif

@@ -72,6 +72,7 @@ typedef CGRect (^GetValueTipRectBlock)(CPTPlot*,NSInteger,NSNumber*);
 @property (strong, nonatomic) CPTTheme *theme; // graph theme
 
 @property (strong, nonatomic) NSString *graphTitle; // title
+@property (strong, nonatomic) CPTTextStyle *graphTitleStyle; // title style
 
 @property (strong, nonatomic) NSArray *defaultColorArray; // color array
 @property (strong, nonatomic) NSMutableArray *plotArray; // plot array
